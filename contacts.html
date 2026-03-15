@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife | Контакти</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f97316',
+                        primaryHover: '#ea580c',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <header id="main-header" class="bg-white shadow-sm sticky top-0 z-50 transition-transform duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-gray-900 tracking-tight">
+                        Fit<span class="text-primary">Life</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary font-medium transition">Головна</a>
+                    <a href="home.html" class="text-gray-600 hover:text-primary font-medium transition">Каталог</a>
+                    <a href="checkout.html" class="text-gray-600 hover:text-primary font-medium transition">Оформлення
+                        замовлення</a>
+
+                    <div class="relative group">
+                        <button
+                            class="text-gray-600 group-hover:text-primary font-medium transition flex items-center py-5">
+                            Про нас
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div
+                            class="absolute left-0 top-full mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                            <div class="py-2">
+                                <a href="delivery.html"
+                                    class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-primary transition">Оплата
+                                    та доставка</a>
+                                <a href="agreement.html"
+                                    class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-primary transition">Договір
+                                    оферти</a>
+                                <a href="returns.html"
+                                    class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-primary transition">Обмін
+                                    та повернення</a>
+                                <a href="contacts.html"
+                                    class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-primary transition">Контакти</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <div class="relative flex items-center justify-end w-10 h-10">
+
+                        <form id="search-form" action="home.html" method="GET"
+                            class="absolute right-0 flex items-center bg-transparent rounded-full transition-all duration-300 ease-in-out w-10 h-10 overflow-hidden z-20">
+
+                            <button type="submit" id="search-btn"
+                                class="flex-shrink-0 w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary transition focus:outline-none">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+
+                            <input name="s" type="text" id="search-input" placeholder="Пошук товарів..."
+                                class="w-full bg-transparent outline-none text-sm text-gray-800 opacity-0 transition-opacity duration-300 pointer-events-none">
+
+                            <button type="button" id="search-close"
+                                class="flex-shrink-0 w-8 h-10 items-center justify-center text-gray-400 hover:text-red-500 transition hidden pr-2 focus:outline-none">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+
+                        </form>
+                    </div>
+                    <button id="cart-open-btn" class="text-gray-500 hover:text-primary transition relative">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                        <span
+                            class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">2</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <nav class="flex text-sm text-gray-500">
+                <a href="index.html" class="hover:text-primary">Головна</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-900 font-medium">Контакти</span>
+            </nav>
+        </div>
+    </div>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Зв'яжіться з нами</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Маєте запитання щодо спортивного харчування, вашого замовлення чи співпраці? Наша команда завжди готова
+                допомогти та надати професійну консультацію.
+            </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-10">
+
+            <div class="w-full lg:w-1/3 space-y-6">
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start">
+                    <div class="bg-orange-100 text-primary p-3 rounded-lg mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-1">Телефони</h3>
+                        <p class="text-gray-600"><a href="tel:+380991234567" class="hover:text-primary transition">+38
+                                (099) 123-45-67</a></p>
+                        <p class="text-gray-600"><a href="tel:+380987654321" class="hover:text-primary transition">+38
+                                (098) 765-43-21</a></p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start">
+                    <div class="bg-orange-100 text-primary p-3 rounded-lg mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-1">E-mail</h3>
+                        <p class="text-gray-600"><a href="mailto:info@fitlife.ua"
+                                class="hover:text-primary transition">info@fitlife.ua</a></p>
+                        <p class="text-gray-500 text-sm mt-1">Для загальних питань та співпраці</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start">
+                    <div class="bg-orange-100 text-primary p-3 rounded-lg mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-1">Адреса та графік</h3>
+                        <p class="text-gray-600 mb-2">м. Івано-Франківськ, вул. Сухомлинського, 2</p>
+                        <div class="text-sm text-gray-500">
+                            <p><span class="font-medium text-gray-700">Пн - Пт:</span> 09:00 - 20:00</p>
+                            <p><span class="font-medium text-gray-700">Сб - Нд:</span> 10:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="w-full lg:w-2/3">
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Напишіть нам</h2>
+
+                    <form action="#" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Ваше ім'я
+                                    *</label>
+                                <input type="text" id="name" required placeholder="Олександр"
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Ваш E-mail
+                                    *</label>
+                                <input type="email" id="email" required placeholder="email@example.com"
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Тема
+                                повідомлення</label>
+                            <select id="subject"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                                <option value="order">Питання щодо замовлення</option>
+                                <option value="consultation">Консультація по товару</option>
+                                <option value="partnership">Співпраця / Опт</option>
+                                <option value="other">Інше</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Ваше повідомлення
+                                *</label>
+                            <textarea id="message" rows="5" required placeholder="Напишіть ваше запитання тут..."
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-y"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full md:w-auto bg-primary hover:bg-primaryHover text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                            Надіслати повідомлення
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-12 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden h-96 relative">
+            <div class="absolute inset-0 bg-gray-200 flex flex-col items-center justify-center text-gray-500">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1139.2089187895579!2d24.691858772894765!3d48.90550730601341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4730c13662536a79%3A0xe9eee8ef2bd5c00!2z0JPRg9GA0YLQvtC20LjRgtC-0Log4oSWNSDQn9Cd0KMg0ZbQvC7Qki7QodGC0LXRhNCw0L3QuNC60LA!5e0!3m2!1suk!2sua!4v1773256644340!5m2!1suk!2sua"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <a href="#" class="text-2xl font-bold text-white tracking-tight mb-4 inline-block">
+                    Fit<span class="text-primary">Life</span>
+                </a>
+                <p class="text-sm text-gray-400">Твій надійний партнер у світі спорту та здоров'я з 2020 року.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Каталог</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-primary transition">Протеїни</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Гейнери</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Креатин</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Вітаміни та мінерали</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Клієнтам</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="delivery.html" class="hover:text-primary transition">Оплата та доставка</a></li>
+                    <li><a href="returns.html" class="hover:text-primary transition">Обмін та повернення</a></li>
+                    <li><a href="contacts.html" class="hover:text-primary transition">Контакти</a></li>
+                    <li><a href="agreement.html" class="hover:text-primary transition">Договір оферти (User
+                            Agreement)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Контакти</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>+38 (099) 123-45-67</li>
+                    <li>info@fitlife.ua</li>
+                    <li>м. Київ, вул. Спортивна, 1</li>
+                </ul>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+            &copy; 2020-<span class="current-year">2026</span> FitLife. Всі права захищені.
+        </div>
+    </footer>
+    <div id="cart-overlay"
+        class="fixed inset-0 bg-black bg-opacity-50 z-[60] hidden transition-opacity opacity-0 duration-300"></div>
+
+    <div id="cart-drawer"
+        class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-[70] transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+            <h2 class="text-lg font-bold text-gray-900 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
+                Ваш кошик
+            </h2>
+            <button id="cart-close-btn" class="text-gray-400 hover:text-red-500 transition p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+
+            <div class="flex items-center">
+                <img src="https://dsn.ua/content/images/22/42502631334196_+32e8d0f130.jpg" alt="Casein"
+                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
+                <div class="ml-4 flex-1">
+                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Slow-Release Casein - 1000g Vanilla</h3>
+                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
+                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
+                        <span class="text-sm px-2 font-medium">1</span>
+                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
+                    </div>
+                </div>
+                <div class="ml-4 flex flex-col items-end">
+                    <span class="text-sm font-bold text-gray-900">1 414 ₴</span>
+                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <img src="https://dsn.ua/content/images/25/35349388728707_+cc38a188a3.jpg" alt="Caffeine"
+                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
+                <div class="ml-4 flex-1">
+                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Pure Caffeine 200mg - 200tabs</h3>
+                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
+                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
+                        <span class="text-sm px-2 font-medium">1</span>
+                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
+                    </div>
+                </div>
+                <div class="ml-4 flex flex-col items-end">
+                    <span class="text-sm font-bold text-gray-900">535 ₴</span>
+                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-200 p-6 bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+            <div class="flex justify-between text-base font-bold text-gray-900 mb-6">
+                <p>Сума до оплати:</p>
+                <p>1 949 ₴</p>
+            </div>
+            <a href="checkout.html"
+                class="w-full flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-primary hover:bg-primaryHover transition">
+                Оформити замовлення
+            </a>
+            <div class="mt-4 flex justify-center text-sm text-center text-gray-500">
+                <button id="cart-continue-btn" type="button"
+                    class="text-primary font-medium hover:text-primaryHover transition">
+                    або Продовжити покупки
+                    <span aria-hidden="true"> &rarr;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife | Договір публічної оферти</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f97316',
+                        primaryHover: '#ea580c',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <header id="main-header" class="bg-white shadow-sm sticky top-0 z-50 transition-transform duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-gray-900 tracking-tight">
+                        Fit<span class="text-primary">Life</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary font-medium transition">Головна</a>
+                    <a href="home.html" class="text-gray-600 hover:text-primary font-medium transition">Каталог</a>
+                    <a href="checkout.html" class="text-gray-600 hover:text-primary font-medium transition">Оформлення
+                        замовлення</a>
+
+                    <div class="relative group">
+                        <button
+                            class="text-gray-600 group-hover:text-primary font-medium transition flex items-center py-5">
+                            Про нас
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div
+                            class="absolute left-0 top-full mt-0 w-56 bg-white border border-gray-100 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
+                            <div class="py-2">
+                                <a href="delivery.html"
+                                    class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-primary transition">Оплата
+                                    та доставка</a>
+                                <a href="agreement.html"
+                                    class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-primary transition">Договір
+                                    оферти</a>
+                                <a href="returns.html"
+                                    class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-primary transition">Обмін
+                                    та повернення</a>
+                                <a href="contacts.html"
+                                    class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-primary transition">Контакти</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <div class="relative flex items-center justify-end w-10 h-10">
+
+                        <form id="search-form" action="home.html" method="GET"
+                            class="absolute right-0 flex items-center bg-transparent rounded-full transition-all duration-300 ease-in-out w-10 h-10 overflow-hidden z-20">
+
+                            <button type="submit" id="search-btn"
+                                class="flex-shrink-0 w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary transition focus:outline-none">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+
+                            <input name="s" type="text" id="search-input" placeholder="Пошук товарів..."
+                                class="w-full bg-transparent outline-none text-sm text-gray-800 opacity-0 transition-opacity duration-300 pointer-events-none">
+
+                            <button type="button" id="search-close"
+                                class="flex-shrink-0 w-8 h-10 items-center justify-center text-gray-400 hover:text-red-500 transition hidden pr-2 focus:outline-none">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+
+                        </form>
+                    </div>
+                    <button id="cart-open-btn" class="text-gray-500 hover:text-primary transition relative">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                        <span
+                            class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">2</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <nav class="flex text-sm text-gray-500">
+                <a href="index.html" class="hover:text-primary">Головна</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-900 font-medium">Договір оферти</span>
+            </nav>
+        </div>
+    </div>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Договір публічної оферти</h1>
+            <p class="text-gray-500 text-sm">Остання редакція: 11 березня 2026 року</p>
+        </div>
+
+        <div
+            class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 prose prose-orange max-w-none text-gray-600 text-sm md:text-base leading-relaxed">
+
+            <p class="mb-6">Цей Договір є публічним договором - офертою (пропозицією) інтернет-магазину
+                <strong>FitLife</strong> (надалі — «Продавець») з фізичною або юридичною особою (надалі — «Покупець»),
+                що включає всі суттєві умови організації купівлі-продажу дистанційним способом (через Інтернет-магазин).
+            </p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-8 mb-4">1. Загальні положення</h3>
+            <ul class="list-disc pl-5 mb-6 space-y-2">
+                <li>Договір укладається шляхом акцепту Покупцем публічної оферти, що містить всі істотні умови договору,
+                    без підписання сторонами. Договір має юридичну силу відповідно до ст. 633 Цивільного кодексу
+                    України.</li>
+                <li>Акцептом (повним і беззастережним прийняттям) умов даної оферти вважається здійснення Покупцем
+                    замовлення на сайті Інтернет-магазину.</li>
+                <li>Здійснюючи замовлення, Покупець підтверджує, що він ознайомлений і згоден з умовами даного Договору.
+                </li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-8 mb-4">2. Предмет договору</h3>
+            <p class="mb-6">Продавець зобов'язується передати у власність Покупця Товар, а Покупець зобов'язується
+                оплатити і прийняти Товар на умовах даного Договору. Цей Договір регулює купівлю-продаж товарів в
+                Інтернет-магазині, в тому числі: добровільний вибір Покупцем товарів; самостійне оформлення Покупцем
+                замовлення; оплата Покупцем замовлення; обробка і доставка замовлення Покупцеві.</p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-8 mb-4">3. Порядок оформлення замовлення</h3>
+            <ul class="list-disc pl-5 mb-6 space-y-2">
+                <li>Покупець має право оформити замовлення на будь-який товар, представлений на Сайті Інтернет-магазину
+                    і наявний на складі.</li>
+                <li>Кожна позиція може бути представлена в замовленні в будь-якій кількості, за умови її наявності.</li>
+                <li>При відсутності товару на складі, Менеджер компанії зобов'язаний довести до відома Покупця (по
+                    телефону або через електронну пошту).</li>
+                <li>При відсутності товару Покупець має право замінити його товаром аналогічної моделі, відмовитися від
+                    даного товару або анулювати замовлення.</li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-8 mb-4">4. Порядок оплати та доставки</h3>
+            <p class="mb-6">Детальні умови оплати та доставки товарів описані у відповідному розділі сайту <a
+                    href="delivery.html" class="text-primary hover:underline">«Оплата та доставка»</a>, який є
+                невід'ємною частиною цього Договору.</p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-8 mb-4">5. Обмін та повернення товару</h3>
+            <p class="mb-6">Умови повернення та обміну товару регулюються Законом України «Про захист прав споживачів»
+                та Постановою Кабінету Міністрів України від 19.03.1994 року № 172. Спортивне харчування, дієтичні
+                добавки та вітаміни належать до продовольчої групи товарів і належної якості <strong>обміну та
+                    поверненню не підлягають</strong>. Детальніше дивіться у розділі <a href="returns.html"
+                    class="text-primary hover:underline">«Обмін та повернення»</a>.</p>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-8 mb-4">6. Конфіденційність і захист персональних даних</h3>
+            <ul class="list-disc pl-5 mb-6 space-y-2">
+                <li>Надаючи свої персональні дані на сайті, Покупець дає добровільну згоду на обробку, використання та
+                    зберігання своїх персональних даних відповідно до Закону України «Про захист персональних даних».
+                </li>
+                <li>Продавець зобов'язується не розголошувати отриману від Покупця інформацію третім особам, крім
+                    компаній-перевізників для виконання замовлення (доставки).</li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-gray-900 mt-8 mb-4">7. Відповідальність сторін</h3>
+            <ul class="list-disc pl-5 mb-6 space-y-2">
+                <li>Сторони несуть відповідальність за невиконання або неналежне виконання умов цього Договору в
+                    порядку, передбаченому цим Договором та чинним законодавством України.</li>
+                <li>Продавець не несе відповідальності за шкоду, заподіяну Покупцеві внаслідок неналежного використання
+                    Товарів, придбаних в Інтернет-магазині (в тому числі недотримання дозувань спортивного харчування).
+                    Консультація лікаря перед вживанням БАДів є відповідальністю Покупця.</li>
+            </ul>
+
+            <div class="mt-10 pt-6 border-t border-gray-200 text-sm text-gray-500 text-center">
+                З повагою, адміністрація магазину FitLife.<br>
+                ФОП Максимів К.Б., ІПН 0000000000
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <a href="#" class="text-2xl font-bold text-white tracking-tight mb-4 inline-block">
+                    Fit<span class="text-primary">Life</span>
+                </a>
+                <p class="text-sm text-gray-400">Твій надійний партнер у світі спорту та здоров'я з 2020 року.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Каталог</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-primary transition">Протеїни</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Гейнери</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Креатин</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Вітаміни та мінерали</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Клієнтам</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="delivery.html" class="hover:text-primary transition">Оплата та доставка</a></li>
+                    <li><a href="returns.html" class="hover:text-primary transition">Обмін та повернення</a></li>
+                    <li><a href="contacts.html" class="hover:text-primary transition">Контакти</a></li>
+                    <li><a href="agreement.html" class="hover:text-primary transition">Договір оферти (User
+                            Agreement)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Контакти</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>+38 (099) 123-45-67</li>
+                    <li>info@fitlife.ua</li>
+                    <li>м. Київ, вул. Спортивна, 1</li>
+                </ul>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+            &copy; 2020-<span class="current-year">2026</span> FitLife. Всі права захищені.
+        </div>
+    </footer>
+    <div id="cart-overlay"
+        class="fixed inset-0 bg-black bg-opacity-50 z-[60] hidden transition-opacity opacity-0 duration-300"></div>
+
+    <div id="cart-drawer"
+        class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-[70] transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+            <h2 class="text-lg font-bold text-gray-900 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
+                Ваш кошик
+            </h2>
+            <button id="cart-close-btn" class="text-gray-400 hover:text-red-500 transition p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+
+            <div class="flex items-center">
+                <img src="https://dsn.ua/content/images/22/42502631334196_+32e8d0f130.jpg" alt="Casein"
+                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
+                <div class="ml-4 flex-1">
+                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Slow-Release Casein - 1000g Vanilla</h3>
+                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
+                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
+                        <span class="text-sm px-2 font-medium">1</span>
+                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
+                    </div>
+                </div>
+                <div class="ml-4 flex flex-col items-end">
+                    <span class="text-sm font-bold text-gray-900">1 414 ₴</span>
+                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <img src="https://dsn.ua/content/images/25/35349388728707_+cc38a188a3.jpg" alt="Caffeine"
+                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
+                <div class="ml-4 flex-1">
+                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Pure Caffeine 200mg - 200tabs</h3>
+                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
+                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
+                        <span class="text-sm px-2 font-medium">1</span>
+                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
+                    </div>
+                </div>
+                <div class="ml-4 flex flex-col items-end">
+                    <span class="text-sm font-bold text-gray-900">535 ₴</span>
+                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-200 p-6 bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+            <div class="flex justify-between text-base font-bold text-gray-900 mb-6">
+                <p>Сума до оплати:</p>
+                <p>1 949 ₴</p>
+            </div>
+            <a href="checkout.html"
+                class="w-full flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-primary hover:bg-primaryHover transition">
+                Оформити замовлення
+            </a>
+            <div class="mt-4 flex justify-center text-sm text-center text-gray-500">
+                <button id="cart-continue-btn" type="button"
+                    class="text-primary font-medium hover:text-primaryHover transition">
+                    або Продовжити покупки
+                    <span aria-hidden="true"> &rarr;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
