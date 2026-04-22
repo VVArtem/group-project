@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitLife | Slow-Release Casein - 1000g Vanilla</title>
+    <title>FitLife</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -98,24 +98,25 @@
                                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
                             </path>
                         </svg>
-                        <span
-                            class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">2</span>
+                        <span id="cart-counter" style="display: none;"
+                            class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
+
     <div class="bg-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <nav class="flex text-sm text-gray-500 overflow-x-auto whitespace-nowrap">
                 <a href="index.html" class="hover:text-primary">Головна</a>
                 <span class="mx-2">/</span>
-                <a href="catalog.html" class="hover:text-primary">Каталог товарів</a>
+                <a href="home.html" class="hover:text-primary">Каталог товарів</a>
+                <span id="slash-category" class="mx-2">/</span>
+                <a id="breadcrumb-category" href="home.html" class="hover:text-primary">Завантаження...</a>
                 <span class="mx-2">/</span>
-                <a href="#" class="hover:text-primary">Протеїн</a>
-                <span class="mx-2">/</span>
-                <span class="text-gray-900 font-medium">Slow-Release Casein - 1000g Vanilla</span>
+                <span id="breadcrumb-name" class="text-gray-900 font-medium">Завантаження...</span>
             </nav>
         </div>
     </div>
@@ -124,43 +125,30 @@
 
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-10 mb-8">
             <div class="flex flex-col lg:flex-row gap-10">
-
                 <div class="w-full lg:w-1/2 flex flex-col">
                     <div
                         class="relative h-96 sm:h-[450px] border border-gray-200 rounded-lg p-4 flex items-center justify-center mb-4 bg-white">
-                        <img src="https://dsn.ua/content/images/22/42502631334196_+32e8d0f130.jpg"
-                            alt="Slow-Release Casein" class="max-h-full object-contain">
-                        <span
-                            class="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded">-10%</span>
+                        <img id="prod-main-img" src="" alt="Product"
+                            class="max-h-full object-contain transition-opacity duration-300">
+                        <div id="prod-badge"></div>
                     </div>
-                    <div class="flex space-x-4 overflow-x-auto pb-2 custom-scrollbar">
-                        <button class="w-20 h-20 border-2 border-primary rounded-lg p-1 flex-shrink-0 cursor-pointer">
-                            <img src="https://dsn.ua/content/images/22/42502631334196_+32e8d0f130.jpg"
-                                class="w-full h-full object-contain">
-                        </button>
-                        <button
-                            class="w-20 h-20 border border-gray-200 rounded-lg p-1 flex-shrink-0 cursor-pointer hover:border-gray-400 transition">
-                            <img src="https://dsn.ua/content/images/22/myproteinslow-release-casein-1000g-vanilla-44079155906480_+c17ac7fd58.png"
-                                class="w-full h-full object-contain">
-                        </button>
+                    <div id="prod-thumbnails" class="flex space-x-4 overflow-x-auto pb-2 custom-scrollbar">
                     </div>
                 </div>
 
                 <div class="w-full lg:w-1/2 flex flex-col">
-                    <p class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-1">Myprotein</p>
-                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Slow-Release Casein - 1000g Vanilla
-                    </h1>
+                    <p id="prod-vendor" class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-1"></p>
+                    <h1 id="prod-title" class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Завантаження...</h1>
 
                     <div class="flex items-center space-x-4 mb-6">
-                        <span class="bg-green-100 text-green-700 text-sm font-semibold px-3 py-1 rounded-full">В
-                            наявності</span>
-                        <span class="text-sm text-gray-500">Артикул: 100-87-1488789-20</span>
+                        <span id="prod-availability"
+                            class="bg-gray-100 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full">...</span>
+                        <span class="text-sm text-gray-500">Код: <span id="prod-id"></span></span>
                     </div>
 
                     <div class="mb-8">
                         <div class="flex items-end space-x-3">
-                            <span class="text-4xl font-extrabold text-gray-900">1 414 ₴</span>
-                            <span class="text-lg text-gray-400 line-through mb-1">1 570 ₴</span>
+                            <span id="prod-price" class="text-4xl font-extrabold text-gray-900"></span>
                         </div>
                     </div>
 
@@ -170,16 +158,16 @@
                                 <label for="quantity"
                                     class="block text-sm font-medium text-gray-700 mb-2">Кількість:</label>
                                 <div class="flex items-center border border-gray-300 rounded-md bg-white w-32">
-                                    <button
-                                        class="px-3 py-2 text-gray-600 hover:text-primary transition focus:outline-none">-</button>
+                                    <button onclick="document.getElementById('quantity').stepDown()"
+                                        class="px-3 py-2 text-gray-600 hover:text-primary transition">-</button>
                                     <input type="number" id="quantity" value="1" min="1"
                                         class="w-full text-center border-none focus:ring-0 text-gray-900 font-medium p-0">
-                                    <button
-                                        class="px-3 py-2 text-gray-600 hover:text-primary transition focus:outline-none">+</button>
+                                    <button onclick="document.getElementById('quantity').stepUp()"
+                                        class="px-3 py-2 text-gray-600 hover:text-primary transition">+</button>
                                 </div>
                             </div>
 
-                            <button
+                            <button id="prod-buy-btn"
                                 class="w-full flex-1 bg-primary hover:bg-primaryHover text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 flex items-center justify-center">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -200,14 +188,6 @@
                             </svg>
                             <span>Відправка сьогодні при замовленні до 16:00</span>
                         </div>
-                        <div class="flex items-start">
-                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>100% оригінальна продукція</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -217,55 +197,20 @@
             <div class="flex border-b border-gray-200 bg-gray-50">
                 <button
                     class="px-6 py-4 text-sm font-bold text-primary border-b-2 border-primary focus:outline-none">Опис
-                    товару</button>
-                <button
-                    class="px-6 py-4 text-sm font-medium text-gray-600 hover:text-gray-900 focus:outline-none transition">Характеристики</button>
+                    та Характеристики</button>
             </div>
-
             <div class="p-6 lg:p-10 flex flex-col lg:flex-row gap-10">
-
-                <div class="w-full lg:w-2/3 prose prose-orange max-w-none text-gray-600 text-sm leading-relaxed">
-                    <p><strong>Штрихкод:</strong> 5055534319703</p>
-                    <p>Slow-Release Casein – це засіб, який допомагає підтримувати обсяг м'язової маси у періоди між
-                        тренуваннями. Також дозволяє збільшити швидкість досягнення потрібних спортсменові обсягів.</p>
-                    <p>Займаючись спортом, ви тренуєте м'язи за рахунок утворення нових волокон. Для їх побудови
-                        потрібне стабільне надходження білка. Білок – це будматеріал для м'язової тканини, проте
-                        забезпечити його концентрацію на належному рівні у періоди сну чи спокою дуже складно. Їжа на
-                        ніч не корисна для організму, що провокує м'язові втрати в нічний час.</p>
-                    <p><strong>Принцип дії</strong><br>Характеристикою казеїну, що у порошку, є повільне засвоєння. Коли
-                        ви приймаєте порошок між двома прийомами їжі, наступні 5-7 годин він засвоюється, підтримуючи
-                        концентрацію амінокислот у крові на стабільному достатньому рівні.</p>
+                <div id="prod-desc"
+                    class="w-full lg:w-2/3 prose prose-orange max-w-none text-gray-600 text-sm leading-relaxed">
                 </div>
 
                 <div class="w-full lg:w-1/3">
                     <h3 class="text-lg font-bold text-gray-900 mb-4">Характеристики</h3>
-                    <div class="border border-gray-200 rounded-lg divide-y divide-gray-200">
-                        <div class="flex justify-between py-3 px-4 bg-gray-50">
-                            <span class="text-sm text-gray-500">Бренд</span>
-                            <span class="text-sm font-medium text-gray-900 text-right">Myprotein</span>
-                        </div>
-                        <div class="flex justify-between py-3 px-4 bg-white">
-                            <span class="text-sm text-gray-500">Тип</span>
-                            <span class="text-sm font-medium text-gray-900 text-right">Казеїн</span>
-                        </div>
-                        <div class="flex justify-between py-3 px-4 bg-gray-50">
-                            <span class="text-sm text-gray-500">Країна виробник</span>
-                            <span class="text-sm font-medium text-gray-900 text-right">Польща</span>
-                        </div>
-                        <div class="flex justify-between py-3 px-4 bg-white">
-                            <span class="text-sm text-gray-500">Форма випуску</span>
-                            <span class="text-sm font-medium text-gray-900 text-right">Порошок</span>
-                        </div>
-                        <div class="flex justify-between py-3 px-4 bg-gray-50">
-                            <span class="text-sm text-gray-500">Ціль</span>
-                            <span class="text-sm font-medium text-gray-900 text-right">Для набору м'язової маси</span>
-                        </div>
+                    <div id="prod-specs" class="border border-gray-200 rounded-lg divide-y divide-gray-200">
                     </div>
                 </div>
-
             </div>
         </div>
-
     </main>
 
     <footer class="bg-gray-900 text-gray-300 py-12">
@@ -331,48 +276,14 @@
             </button>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
-
-            <div class="flex items-center">
-                <img src="https://dsn.ua/content/images/22/42502631334196_+32e8d0f130.jpg" alt="Casein"
-                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
-                <div class="ml-4 flex-1">
-                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Slow-Release Casein - 1000g Vanilla</h3>
-                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
-                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
-                        <span class="text-sm px-2 font-medium">1</span>
-                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
-                    </div>
-                </div>
-                <div class="ml-4 flex flex-col items-end">
-                    <span class="text-sm font-bold text-gray-900">1 414 ₴</span>
-                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
-                </div>
-            </div>
-
-            <div class="flex items-center">
-                <img src="https://dsn.ua/content/images/25/35349388728707_+cc38a188a3.jpg" alt="Caffeine"
-                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
-                <div class="ml-4 flex-1">
-                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Pure Caffeine 200mg - 200tabs</h3>
-                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
-                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
-                        <span class="text-sm px-2 font-medium">1</span>
-                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
-                    </div>
-                </div>
-                <div class="ml-4 flex flex-col items-end">
-                    <span class="text-sm font-bold text-gray-900">535 ₴</span>
-                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
-                </div>
-            </div>
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
 
         </div>
 
         <div class="border-t border-gray-200 p-6 bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
             <div class="flex justify-between text-base font-bold text-gray-900 mb-6">
                 <p>Сума до оплати:</p>
-                <p>1 949 ₴</p>
+                <p id="cart-total-price">1 949 ₴</p>
             </div>
             <a href="checkout.html"
                 class="w-full flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-primary hover:bg-primaryHover transition">
@@ -388,6 +299,8 @@
         </div>
     </div>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/single.js"></script>
+    <script src="assets/js/cart.js"></script>
 
 </body>
 

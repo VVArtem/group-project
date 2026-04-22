@@ -97,8 +97,8 @@
                                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
                             </path>
                         </svg>
-                        <span
-                            class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">2</span>
+                        <span id="cart-counter" style="display: none;"
+                            class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
                     </button>
                 </div>
             </div>
@@ -106,7 +106,7 @@
     </header>
 
     <section class="relative bg-gray-900 bg-cover bg-center bg-no-repeat"
-        style="background-image: url('assets/images/hero_image.jpg');">
+        style="background-image: url('assets/images/poleznye_zanyatiya_sportom_na_svezhem_vozdukhe.jpg');">
         <div class="absolute inset-0 bg-black opacity-60"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
@@ -169,7 +169,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">Уцінка</h2>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="products-grid">
                 <div
                     class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden group">
                     <div class="h-64 bg-gray-200 flex items-center justify-center relative">
@@ -265,10 +265,10 @@
             </div>
 
             <div class="text-center mt-10">
-                <button
+                <a href="home.html"
                     class="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2 px-6 rounded-lg transition duration-300">
                     Показати всі товари
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -347,48 +347,14 @@
             </button>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
-
-            <div class="flex items-center">
-                <img src="https://dsn.ua/content/images/22/42502631334196_+32e8d0f130.jpg" alt="Casein"
-                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
-                <div class="ml-4 flex-1">
-                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Slow-Release Casein - 1000g Vanilla</h3>
-                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
-                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
-                        <span class="text-sm px-2 font-medium">1</span>
-                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
-                    </div>
-                </div>
-                <div class="ml-4 flex flex-col items-end">
-                    <span class="text-sm font-bold text-gray-900">1 414 ₴</span>
-                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
-                </div>
-            </div>
-
-            <div class="flex items-center">
-                <img src="https://dsn.ua/content/images/25/35349388728707_+cc38a188a3.jpg" alt="Caffeine"
-                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
-                <div class="ml-4 flex-1">
-                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Pure Caffeine 200mg - 200tabs</h3>
-                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
-                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
-                        <span class="text-sm px-2 font-medium">1</span>
-                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
-                    </div>
-                </div>
-                <div class="ml-4 flex flex-col items-end">
-                    <span class="text-sm font-bold text-gray-900">535 ₴</span>
-                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
-                </div>
-            </div>
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
 
         </div>
 
         <div class="border-t border-gray-200 p-6 bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
             <div class="flex justify-between text-base font-bold text-gray-900 mb-6">
                 <p>Сума до оплати:</p>
-                <p>1 949 ₴</p>
+                <p id="cart-total-price">1 949 ₴</p>
             </div>
             <a href="checkout.html"
                 class="w-full flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-primary hover:bg-primaryHover transition">
@@ -404,6 +370,9 @@
         </div>
     </div>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/helper.js"></script>
+    <script src="assets/js/front-page.js"></script>
 </body>
 
 </html>

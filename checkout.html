@@ -98,8 +98,8 @@
                                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
                             </path>
                         </svg>
-                        <span
-                            class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">2</span>
+                        <span id="cart-counter" style="display: none;"
+                            class="absolute -top-1 -right-2 bg-primary text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
                     </button>
                 </div>
             </div>
@@ -231,42 +231,13 @@
                 <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 sticky top-6">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4">Ваше замовлення</h2>
 
-                    <div class="space-y-4 mb-6 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
-
-                        <div class="flex items-start">
-                            <div class="w-16 h-16 flex-shrink-0 border border-gray-200 rounded-md overflow-hidden p-1">
-                                <img src="https://dsn.ua/content/images/22/42502631334196_+32e8d0f130.jpg" alt="Casein"
-                                    class="w-full h-full object-contain">
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Slow-Release Casein -
-                                    1000g
-                                    Vanilla</h3>
-                                <p class="text-sm text-gray-500 mt-1">1 шт.</p>
-                            </div>
-                            <div class="ml-4 text-sm font-bold text-gray-900">1 414 ₴</div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="w-16 h-16 flex-shrink-0 border border-gray-200 rounded-md overflow-hidden p-1">
-                                <img src="https://dsn.ua/content/images/25/35349388728707_+cc38a188a3.jpg"
-                                    alt="Caffeine" class="w-full h-full object-contain">
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Pure Caffeine 200mg -
-                                    200tabs
-                                </h3>
-                                <p class="text-sm text-gray-500 mt-1">2 шт.</p>
-                            </div>
-                            <div class="ml-4 text-sm font-bold text-gray-900">1 070 ₴</div>
-                        </div>
-
+                    <div id="checkout-cart-item-conteiner" class="space-y-4 mb-6 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
                     </div>
 
                     <div class="border-t border-gray-200 pt-4 space-y-2">
                         <div class="flex justify-between text-sm text-gray-600">
                             <span>Сума товарів:</span>
-                            <span>2 484 ₴</span>
+                            <span id="checkout-cart-total-price">0</span>
                         </div>
                         <div class="flex justify-between text-sm text-gray-600">
                             <span>Доставка:</span>
@@ -275,7 +246,7 @@
                         <div
                             class="flex justify-between text-lg font-bold text-gray-900 mt-4 pt-4 border-t border-gray-200">
                             <span>До сплати:</span>
-                            <span class="text-primary">2 484 ₴</span>
+                            <span id="due-cart" class="text-primary">0</span>
                         </div>
                     </div>
 
@@ -355,48 +326,14 @@
             </button>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
-
-            <div class="flex items-center">
-                <img src="https://dsn.ua/content/images/22/42502631334196_+32e8d0f130.jpg" alt="Casein"
-                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
-                <div class="ml-4 flex-1">
-                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Slow-Release Casein - 1000g Vanilla</h3>
-                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
-                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
-                        <span class="text-sm px-2 font-medium">1</span>
-                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
-                    </div>
-                </div>
-                <div class="ml-4 flex flex-col items-end">
-                    <span class="text-sm font-bold text-gray-900">1 414 ₴</span>
-                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
-                </div>
-            </div>
-
-            <div class="flex items-center">
-                <img src="https://dsn.ua/content/images/25/35349388728707_+cc38a188a3.jpg" alt="Caffeine"
-                    class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
-                <div class="ml-4 flex-1">
-                    <h3 class="text-sm font-medium text-gray-900 line-clamp-2">Pure Caffeine 200mg - 200tabs</h3>
-                    <div class="flex items-center mt-2 border border-gray-300 rounded w-fit">
-                        <button class="px-2 text-gray-500 hover:text-primary transition">-</button>
-                        <span class="text-sm px-2 font-medium">1</span>
-                        <button class="px-2 text-gray-500 hover:text-primary transition">+</button>
-                    </div>
-                </div>
-                <div class="ml-4 flex flex-col items-end">
-                    <span class="text-sm font-bold text-gray-900">535 ₴</span>
-                    <button class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition">Видалити</button>
-                </div>
-            </div>
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
 
         </div>
 
         <div class="border-t border-gray-200 p-6 bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
             <div class="flex justify-between text-base font-bold text-gray-900 mb-6">
                 <p>Сума до оплати:</p>
-                <p>1 949 ₴</p>
+                <p id="cart-total-price">1 949 ₴</p>
             </div>
             <a href="checkout.html"
                 class="w-full flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-primary hover:bg-primaryHover transition">
@@ -412,6 +349,8 @@
         </div>
     </div>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/checkout.js"></script>
 </body>
 
 </html>

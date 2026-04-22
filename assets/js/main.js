@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const cartDrawer = document.getElementById('cart-drawer');
    
     function openCart() {
+        renderCartUI();
         cartOverlay.classList.remove('hidden');
-       
         setTimeout(() => {
             cartOverlay.classList.remove('opacity-0');
             cartDrawer.classList.remove('translate-x-full');
