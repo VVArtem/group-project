@@ -64,7 +64,11 @@ async function renderCartUI() {
     const container = document.getElementById('cart-items-container');
     const totalElement = document.getElementById('cart-total-price');
     if (!container || !totalElement) return;
+    
     const cart = getCart();     
+    
+    const hasDiscount = localStorage.getItem('fitlife_game_discount') === 'true';
+
     if (cart.length === 0) {
         container.innerHTML = `
             <div class="flex flex-col items-center justify-center h-full text-gray-500">
@@ -86,12 +90,29 @@ async function renderCartUI() {
         }
         let html = '';
         let totalPrice = 0;
+        
         cart.forEach(cartItem => {
             const product = productsDb.find(p => p.id === cartItem.id);
             if (!product) return; 
             const imgUrl = product.pictures && product.pictures.length > 0 ? product.pictures[0] : 'https://via.placeholder.com/150?text=No+Image';
+            
             const itemTotal = product.price * cartItem.quantity;
-            totalPrice += itemTotal;
+            totalPrice += itemTotal; 
+            
+            
+            let priceHtml = `<span class="text-sm font-bold text-gray-900">${itemTotal.toLocaleString('uk-UA')} ₴</span>`;
+            
+            if (hasDiscount) {
+                const discountedItemTotal = Math.round(itemTotal * 0.33); 
+                priceHtml = `
+                    <div class="flex flex-col items-end">
+                        <span class="text-xs text-gray-400 line-through">${itemTotal.toLocaleString('uk-UA')} ₴</span>
+                        <span class="text-sm font-bold text-green-600">${discountedItemTotal.toLocaleString('uk-UA')} ₴</span>
+                        <span class="text-[10px] bg-green-100 text-green-800 px-1 rounded font-bold mt-1">-67% WIN!</span>
+                    </div>
+                `;
+            }
+
             html += `
                 <div class="flex items-center bg-white">
                     <img src="${imgUrl}" alt="${product.name}" class="w-16 h-16 object-contain border border-gray-200 rounded-md p-1">
@@ -104,14 +125,25 @@ async function renderCartUI() {
                         </div>
                     </div>
                     <div class="ml-4 flex flex-col items-end">
-                        <span class="text-sm font-bold text-gray-900">${itemTotal.toLocaleString('uk-UA')} ₴</span>
+                        ${priceHtml}
                         <button onclick="removeFromCart('${cartItem.id}')" class="text-xs text-red-500 hover:text-red-700 underline mt-2 transition focus:outline-none">Видалити</button>
                     </div>
                 </div>
             `;
         });
         container.innerHTML = html;
-        totalElement.textContent = totalPrice.toLocaleString('uk-UA');
+        
+        
+        if (hasDiscount) {
+            const discountedTotal = Math.round(totalPrice * 0.33);
+            totalElement.innerHTML = `
+                <span class="text-sm text-gray-400 line-through font-normal mr-2">${totalPrice.toLocaleString('uk-UA')} ₴</span>
+                <span class="text-green-600">${discountedTotal.toLocaleString('uk-UA')} ₴</span>
+            `;
+        } else {
+            totalElement.textContent = totalPrice.toLocaleString('uk-UA') + ' ₴';
+        }
+        
     } catch (error) {
         console.error('Помилка завантаження кошика:', error);
         container.innerHTML = '<p class="text-center text-red-500 mt-10">Помилка завантаження даних</p>';

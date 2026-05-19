@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById('mini-game');
     if (!container) return;
 
-    // Створюємо Canvas
+    
     const canvas = document.createElement('canvas');
     canvas.width = container.clientWidth;
     canvas.height = container.clientHeight;
     container.appendChild(canvas);
     const ctx = canvas.getContext('2d');
 
-    // Налаштування гравця
+    
     const player = {
         x: canvas.width / 2 - 25,
         y: canvas.height - 120,
@@ -18,22 +18,22 @@ document.addEventListener("DOMContentLoaded", () => {
         dx: 0,
         baseSpeed: 6,
         currentSpeed: 6,
-        state: 0, // 0: Худий, 1: М'язи 1, 2: Бодібілдер, -1: Вага 1, -2: Повний
+        state: 0, 
         score: 0,
         
-        // Нові змінні для анімації
-        currentFrame: 0,       // Поточний кадр анімації (0-3)
-        animationTimer: 0,      // Лічильник для перемикання кадрів
-        animationSpeed: 10,     // Частота перемикання (менше число - швидше)
-        isFacingRight: true,    // В який бік дивиться гравець
-        isMoving: false          // Чи рухається гравець зараз
+        
+        currentFrame: 0,       
+        animationTimer: 0,      
+        animationSpeed: 10,     
+        isFacingRight: true,    
+        isMoving: false          
     };
 
-    // Шляхи до спрайтів гравця (оновлена структура)
-    // Я припустив назви кадрів 1, 2, 3, 4 на основі твоєї структури.
-    // Якщо файлу '...4.png' немає, анімація буде з 3-х кадрів.
+    
+    
+    
     const playerImages = {
-        // Макс м'язи
+        
         '2': {
             stand: createImage('assets/sprite/strong/sprite-stand.png', '💪'),
             frames: [
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 createImage('assets/sprite/strong/strong4.png', '💪')
             ]
         },
-        // М'язи 1
+        
         '1': {
             stand: createImage('assets/sprite/stronger/sprite-stand.png', '🏋️'),
             frames: [
@@ -53,27 +53,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 createImage('assets/sprite/stronger/stronger4.png', '🏋️')
             ]
         },
-        // Худий (Старт)
+        
         '0': {
             stand: createImage('assets/sprite/normal/sprite-stand.png', '🧍'),
             frames: [
                 createImage('assets/sprite/normal/norm1.png', '🧍'),
                 createImage('assets/sprite/normal/norm2.png', '🧍'),
                 createImage('assets/sprite/normal/norm3.png', '🧍'),
-                createImage('assets/sprite/normal/norm4.png', '🧍') // Переконайся, що цей файл існує
+                createImage('assets/sprite/normal/norm4.png', '🧍') 
             ]
         },
-        // Вага 1
+        
         '-1': {
             stand: createImage('assets/sprite/fatter/sprite-stand.png', '🍔'),
             frames: [
                 createImage('assets/sprite/fatter/fatter1.png', '🍔'),
                 createImage('assets/sprite/fatter/fatter2.png', '🍔'),
                 createImage('assets/sprite/fatter/fatter3.png', '🍔'),
-                createImage('assets/sprite/fatter/fatter4.png', '🍔') // Переконайся, що цей файл існує
+                createImage('assets/sprite/fatter/fatter4.png', '🍔') 
             ]
         },
-        // Повний
+        
         '-2': {
             stand: createImage('assets/sprite/fat/sprite-stand.png', '🐋'),
             frames: [
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const items = [];
     const keys = { ArrowLeft: false, ArrowRight: false, a: false, d: false };
 
-    // Функція для створення зображень із фолбеком
+    
     function createImage(src, fallbackText) {
         const img = new Image();
         img.src = src;
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const bgImage = createImage('assets/sprite/background.png', '🌆');
 
-    // Спавн їжі (генерація випадкового предмета)
+    
     function spawnFood() {
         const isSport = Math.random() > 0.5;
         const width = 30;
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     spawnFood();
 
-    // Керування
+    
     window.addEventListener('keydown', (e) => {
         if (keys.hasOwnProperty(e.key) || keys.hasOwnProperty(e.key.toLowerCase())) {
             keys[e.key.toLowerCase()] = true;
@@ -146,8 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Логіка зміни стадій та швидкості
+    
     function updatePlayerState() {
+        console.log()
         if (player.score >= 10) player.state = 2;
         else if (player.score >= 5) player.state = 1;
         else if (player.score <= -10) player.state = -2;
@@ -157,29 +158,68 @@ document.addEventListener("DOMContentLoaded", () => {
         const absState = Math.abs(player.state);
         if (absState === 0) {
             player.currentSpeed = player.baseSpeed;
-            player.animationSpeed = 10; // Звичайна швидкість
+            player.animationSpeed = 10; 
         } else if (absState === 1) {
             player.currentSpeed = player.baseSpeed * 0.8;
-            player.animationSpeed = 12; // Сповільнена анімація
+            player.animationSpeed = 12; 
         } else if (absState === 2) {
             player.currentSpeed = player.baseSpeed * 0.5;
-            player.animationSpeed = 15; // Повільна анімація
+            player.animationSpeed = 15; 
         }
     }
 
-    // Головний ігровий цикл
+    
+    
+    let gameOver = false;
+    let gameResult = null; 
+
+    
     function update() {
+        console.log(gameOver);
+        if (gameOver) {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.75)"; 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.textAlign = "center";
+            if (gameResult === 'win') {
+                ctx.fillStyle = "#4ade80"; 
+                ctx.font = "bold 40px sans-serif";
+                ctx.fillText("🏆 ПЕРЕМОГА!", canvas.width / 2, canvas.height / 2 - 20);
+                
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "18px sans-serif";
+                ctx.fillText("Ви здобули знижку 67% на всі товари!", canvas.width / 2, canvas.height / 2 + 20);
+           } else {
+                ctx.fillStyle = "#f87171"; 
+                ctx.font = "bold 40px sans-serif";
+                ctx.fillText("💀 ВИ ПРОГРАЛИ!", canvas.width / 2, canvas.height / 2 - 20);
+                
+                
+                ctx.fillStyle = "#60a5fa"; 
+                ctx.font = "bold 20px sans-serif";
+                ctx.fillText("👉 Натисни тут, щоб виправити ситуацію 👈", canvas.width / 2, canvas.height / 2 + 30);
+                
+                
+                ctx.beginPath();
+                ctx.moveTo(canvas.width / 2 - 180, canvas.height / 2 + 38);
+                ctx.lineTo(canvas.width / 2 + 180, canvas.height / 2 + 38);
+                ctx.strokeStyle = "#60a5fa";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            return; 
+        }
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if (bgImage.complete && bgImage.naturalHeight !== 0) {
             ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
         } else {
-            // Тимчасовий колір неба, поки картинка вантажиться
             ctx.fillStyle = "#87CEEB"; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
-        // Рух гравця та анімація
+        
         player.isMoving = false;
         if (keys.ArrowLeft || keys.a) {
             player.x -= player.currentSpeed;
@@ -191,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
             player.isMoving = true;
         }
 
-        // Оновлення кадру анімації
+        
         if (player.isMoving) {
             player.animationTimer++;
             if (player.animationTimer >= player.animationSpeed) {
@@ -202,20 +242,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 player.animationTimer = 0;
             }
         } else {
-            // Коли гравець не рухається, скидаємо кадр на стійку
             player.currentFrame = 0;
             player.animationTimer = 0;
         }
 
-        // Межі екрану для гравця
+        
         if (player.x < 0) player.x = 0;
         if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
 
-        // Малювання гравця
+        
         const currentState = playerImages[player.state.toString()];
         let currentImgToDraw;
 
-        // Вибираємо картинку: для руху чи для стійки
         if (player.isMoving && currentState.frames && currentState.frames.length > 0) {
             currentImgToDraw = currentState.frames[player.currentFrame];
         } else {
@@ -223,26 +261,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (currentImgToDraw.complete && currentImgToDraw.naturalHeight !== 0) {
-            ctx.save(); // Зберігаємо стан контексту
-
+            ctx.save(); 
             if (!player.isFacingRight) {
-                // Віддзеркалення по горизонталі для руху вліво
                 ctx.translate(player.x + player.width, player.y);
                 ctx.scale(-1, 1);
                 ctx.drawImage(currentImgToDraw, 0, 0, player.width, player.height);
             } else {
-                // Звичайне малювання для руху вправо
                 ctx.drawImage(currentImgToDraw, player.x, player.y, player.width, player.height);
             }
-
-            ctx.restore(); // Відновлюємо стан контексту
+            ctx.restore(); 
         } else {
-            // Фолбек
             ctx.font = "40px Arial";
             ctx.fillText(currentImgToDraw.fallback, player.x, player.y + 40);
         }
 
-        // Рух та малювання предметів
+        
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
             item.y += item.speed;
@@ -254,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ctx.fillText(item.img.fallback, item.x, item.y + 20);
             }
 
-            // Перевірка колізії
+            
             if (item.y + item.height > player.y &&
                 item.x < player.x + player.width &&
                 item.x + item.width > player.x) {
@@ -263,26 +296,59 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (item.type === 'fastfood') player.score -= 1;
                 
                 updatePlayerState();
+
+                
+                if (player.score >= 15) {
+                    gameOver = true;
+                    gameResult = 'win';
+                    localStorage.setItem('fitlife_game_discount', 'true'); 
+                } else if (player.score <= -15) {
+                    gameOver = true;
+                    gameResult = 'lose';
+                    localStorage.removeItem('fitlife_game_discount'); 
+                }
+
                 items.splice(i, 1);
                 i--;
                 continue;
             }
 
-            // Видалення предметів, які впали
             if (item.y > canvas.height) {
                 items.splice(i, 1);
                 i--;
             }
         }
 
-        // Відображення UI
         ctx.fillStyle = "#333";
         ctx.font = "16px sans-serif";
         ctx.fillText("Баланс: " + player.score + " (Стадія: " + player.state + ")", 10, 25);
 
-        requestAnimationFrame(update);
+        
+        if (!gameOver) {
+            requestAnimationFrame(update);           
+        }
+
+        if (player.score >= 15) {
+            update();
+        }
     }
 
-    // Запуск гри
+    
+    canvas.addEventListener('click', () => {
+        
+        if (gameOver && gameResult === 'lose') {
+            window.location.href = 'single.html?id=6841'; 
+        }
+    });
+
+    
+    canvas.addEventListener('mousemove', () => {
+        if (gameOver && gameResult === 'lose') {
+            canvas.style.cursor = 'pointer';
+        } else {
+            canvas.style.cursor = 'default';
+        }
+    });
+    
     update();
 });
