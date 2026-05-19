@@ -2,14 +2,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById('mini-game');
     if (!container) return;
 
-    
+
     const canvas = document.createElement('canvas');
+
+    window.addEventListener('resize', () => {
+        canvas.width = container.clientWidth;
+        canvas.height = container.clientHeight;
+        player.y = canvas.height - 120;
+        if (player.x > canvas.width - player.width) {
+            player.x = canvas.width - player.width;
+        }
+    });
+
     canvas.width = container.clientWidth;
     canvas.height = container.clientHeight;
     container.appendChild(canvas);
     const ctx = canvas.getContext('2d');
 
-    
+
     const player = {
         x: canvas.width / 2 - 25,
         y: canvas.height - 120,
@@ -18,22 +28,22 @@ document.addEventListener("DOMContentLoaded", () => {
         dx: 0,
         baseSpeed: 6,
         currentSpeed: 6,
-        state: 0, 
+        state: 0,
         score: 0,
-        
-        
-        currentFrame: 0,       
-        animationTimer: 0,      
-        animationSpeed: 10,     
-        isFacingRight: true,    
-        isMoving: false          
+
+
+        currentFrame: 0,
+        animationTimer: 0,
+        animationSpeed: 10,
+        isFacingRight: true,
+        isMoving: false
     };
 
-    
-    
-    
+
+
+
     const playerImages = {
-        
+
         '2': {
             stand: createImage('assets/sprite/strong/sprite-stand.png', '💪'),
             frames: [
@@ -43,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 createImage('assets/sprite/strong/strong4.png', '💪')
             ]
         },
-        
+
         '1': {
             stand: createImage('assets/sprite/stronger/sprite-stand.png', '🏋️'),
             frames: [
@@ -53,27 +63,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 createImage('assets/sprite/stronger/stronger4.png', '🏋️')
             ]
         },
-        
+
         '0': {
             stand: createImage('assets/sprite/normal/sprite-stand.png', '🧍'),
             frames: [
                 createImage('assets/sprite/normal/norm1.png', '🧍'),
                 createImage('assets/sprite/normal/norm2.png', '🧍'),
                 createImage('assets/sprite/normal/norm3.png', '🧍'),
-                createImage('assets/sprite/normal/norm4.png', '🧍') 
+                createImage('assets/sprite/normal/norm4.png', '🧍')
             ]
         },
-        
+
         '-1': {
             stand: createImage('assets/sprite/fatter/sprite-stand.png', '🍔'),
             frames: [
                 createImage('assets/sprite/fatter/fatter1.png', '🍔'),
                 createImage('assets/sprite/fatter/fatter2.png', '🍔'),
                 createImage('assets/sprite/fatter/fatter3.png', '🍔'),
-                createImage('assets/sprite/fatter/fatter4.png', '🍔') 
+                createImage('assets/sprite/fatter/fatter4.png', '🍔')
             ]
         },
-        
+
         '-2': {
             stand: createImage('assets/sprite/fat/sprite-stand.png', '🐋'),
             frames: [
@@ -94,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const items = [];
     const keys = { ArrowLeft: false, ArrowRight: false, a: false, d: false };
 
-    
+
     function createImage(src, fallbackText) {
         const img = new Image();
         img.src = src;
@@ -104,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const bgImage = createImage('assets/sprite/background.png', '🌆');
 
-    
+
     function spawnFood() {
         const isSport = Math.random() > 0.5;
         const width = 30;
@@ -132,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     spawnFood();
 
-    
+
     window.addEventListener('keydown', (e) => {
         if (keys.hasOwnProperty(e.key) || keys.hasOwnProperty(e.key.toLowerCase())) {
             keys[e.key.toLowerCase()] = true;
@@ -145,8 +155,40 @@ document.addEventListener("DOMContentLoaded", () => {
             keys[e.key] = false;
         }
     });
+    
+    let isTouching = false;
+    let targetX = 0; 
+    
+    function updateTargetX(clientX) {
+        const rect = canvas.getBoundingClientRect();
+        targetX = clientX - rect.left;
+    }
+    
+    canvas.addEventListener('touchstart', (e) => {
+        isTouching = true;
+        updateTargetX(e.touches[0].clientX);
+        if (e.cancelable) e.preventDefault(); 
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', (e) => {
+        updateTargetX(e.touches[0].clientX);
+        if (e.cancelable) e.preventDefault();
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', () => { isTouching = false; });
 
     
+    canvas.addEventListener('mousedown', (e) => {
+        isTouching = true;
+        updateTargetX(e.clientX);
+    });
+    canvas.addEventListener('mousemove', (e) => {
+        if (isTouching) updateTargetX(e.clientX);
+    });
+    canvas.addEventListener('mouseup', () => { isTouching = false; });
+    canvas.addEventListener('mouseleave', () => { isTouching = false; });
+
+
     function updatePlayerState() {
         console.log()
         if (player.score >= 10) player.state = 2;
@@ -158,48 +200,48 @@ document.addEventListener("DOMContentLoaded", () => {
         const absState = Math.abs(player.state);
         if (absState === 0) {
             player.currentSpeed = player.baseSpeed;
-            player.animationSpeed = 10; 
+            player.animationSpeed = 10;
         } else if (absState === 1) {
             player.currentSpeed = player.baseSpeed * 0.8;
-            player.animationSpeed = 12; 
+            player.animationSpeed = 12;
         } else if (absState === 2) {
             player.currentSpeed = player.baseSpeed * 0.5;
-            player.animationSpeed = 15; 
+            player.animationSpeed = 15;
         }
     }
 
-    
-    
-    let gameOver = false;
-    let gameResult = null; 
 
-    
+
+    let gameOver = false;
+    let gameResult = null;
+
+
     function update() {
         console.log(gameOver);
         if (gameOver) {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.75)"; 
+            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
             ctx.textAlign = "center";
             if (gameResult === 'win') {
-                ctx.fillStyle = "#4ade80"; 
+                ctx.fillStyle = "#4ade80";
                 ctx.font = "bold 40px sans-serif";
                 ctx.fillText("🏆 ПЕРЕМОГА!", canvas.width / 2, canvas.height / 2 - 20);
-                
+
                 ctx.fillStyle = "#ffffff";
                 ctx.font = "18px sans-serif";
                 ctx.fillText("Ви здобули знижку 67% на всі товари!", canvas.width / 2, canvas.height / 2 + 20);
-           } else {
-                ctx.fillStyle = "#f87171"; 
+            } else {
+                ctx.fillStyle = "#f87171";
                 ctx.font = "bold 40px sans-serif";
                 ctx.fillText("💀 ВИ ПРОГРАЛИ!", canvas.width / 2, canvas.height / 2 - 20);
-                
-                
-                ctx.fillStyle = "#60a5fa"; 
+
+
+                ctx.fillStyle = "#60a5fa";
                 ctx.font = "bold 20px sans-serif";
                 ctx.fillText("👉 Натисни тут, щоб виправити ситуацію 👈", canvas.width / 2, canvas.height / 2 + 30);
-                
-                
+
+
                 ctx.beginPath();
                 ctx.moveTo(canvas.width / 2 - 180, canvas.height / 2 + 38);
                 ctx.lineTo(canvas.width / 2 + 180, canvas.height / 2 + 38);
@@ -207,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ctx.lineWidth = 2;
                 ctx.stroke();
             }
-            return; 
+            return;
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -215,11 +257,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (bgImage.complete && bgImage.naturalHeight !== 0) {
             ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
         } else {
-            ctx.fillStyle = "#87CEEB"; 
+            ctx.fillStyle = "#87CEEB";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
-        
+
         player.isMoving = false;
         if (keys.ArrowLeft || keys.a) {
             player.x -= player.currentSpeed;
@@ -231,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
             player.isMoving = true;
         }
 
-        
+
         if (player.isMoving) {
             player.animationTimer++;
             if (player.animationTimer >= player.animationSpeed) {
@@ -246,11 +288,11 @@ document.addEventListener("DOMContentLoaded", () => {
             player.animationTimer = 0;
         }
 
-        
+
         if (player.x < 0) player.x = 0;
         if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
 
-        
+
         const currentState = playerImages[player.state.toString()];
         let currentImgToDraw;
 
@@ -261,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (currentImgToDraw.complete && currentImgToDraw.naturalHeight !== 0) {
-            ctx.save(); 
+            ctx.save();
             if (!player.isFacingRight) {
                 ctx.translate(player.x + player.width, player.y);
                 ctx.scale(-1, 1);
@@ -269,13 +311,13 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 ctx.drawImage(currentImgToDraw, player.x, player.y, player.width, player.height);
             }
-            ctx.restore(); 
+            ctx.restore();
         } else {
             ctx.font = "40px Arial";
             ctx.fillText(currentImgToDraw.fallback, player.x, player.y + 40);
         }
 
-        
+
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
             item.y += item.speed;
@@ -287,25 +329,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 ctx.fillText(item.img.fallback, item.x, item.y + 20);
             }
 
-            
+
             if (item.y + item.height > player.y &&
                 item.x < player.x + player.width &&
                 item.x + item.width > player.x) {
-                
+
                 if (item.type === 'sport') player.score += 1;
                 if (item.type === 'fastfood') player.score -= 1;
-                
+
                 updatePlayerState();
 
-                
+
                 if (player.score >= 15) {
                     gameOver = true;
                     gameResult = 'win';
-                    localStorage.setItem('fitlife_game_discount', 'true'); 
+                    localStorage.setItem('fitlife_game_discount', 'true');
                 } else if (player.score <= -15) {
                     gameOver = true;
                     gameResult = 'lose';
-                    localStorage.removeItem('fitlife_game_discount'); 
+                    localStorage.removeItem('fitlife_game_discount');
                 }
 
                 items.splice(i, 1);
@@ -323,9 +365,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.font = "16px sans-serif";
         ctx.fillText("Баланс: " + player.score + " (Стадія: " + player.state + ")", 10, 25);
 
-        
+
         if (!gameOver) {
-            requestAnimationFrame(update);           
+            requestAnimationFrame(update);
         }
 
         if (player.score >= 15) {
@@ -333,15 +375,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    
+
     canvas.addEventListener('click', () => {
-        
+
         if (gameOver && gameResult === 'lose') {
-            window.location.href = 'single.html?id=6841'; 
+            window.location.href = 'single.html?id=6841';
         }
     });
 
-    
+
     canvas.addEventListener('mousemove', () => {
         if (gameOver && gameResult === 'lose') {
             canvas.style.cursor = 'pointer';
@@ -349,6 +391,6 @@ document.addEventListener("DOMContentLoaded", () => {
             canvas.style.cursor = 'default';
         }
     });
-    
+
     update();
 });
